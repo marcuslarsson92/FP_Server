@@ -35,7 +35,7 @@ public class MemberController {
     public void registerNewMember(@RequestBody Member member) {
         memberService.addNewMember(member);
     }
-    @DeleteMapping(path = "{memberId}")
+    @DeleteMapping(path = "/{memberId}")
     public void deleteMember(@PathVariable("memberId") Long memberId) {
         memberService.deleteMember(memberId);
     }
@@ -46,4 +46,10 @@ public class MemberController {
             @RequestParam(required = false) String email) {
         memberService.updateMember(memberId, name, email);
     }
+
+    @PostMapping(path = "/post/text/{memberId}")
+        public void postNewText(@PathVariable("memberId") Long memberId, @RequestParam String text) {
+            memberService.postNewText(memberId, text);
+        }
+
 }
