@@ -22,6 +22,11 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    public boolean getLoginAccept(String email, String password) {
+        String pw = memberRepository.acceptLogin(email);
+        return (password.equals(pw));
+    }
+
     public void addNewMember(Member member) {
         Optional<Member> memberOptional = memberRepository.findMemberByEmail(member.getEmail());
 

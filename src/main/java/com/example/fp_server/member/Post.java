@@ -2,7 +2,6 @@ package com.example.fp_server.member;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table
@@ -18,17 +17,15 @@ public class Post {
             generator = "post_sequence"
     )
     private Long id;
-    private String title;
-    private String content;
+    private String text;
     private String email;
     private LocalDate date;
 
     public Post() {
     }
 
-    public Post(String title, String content, String email, LocalDate date) {
-        this.title = title;
-        this.content = content;
+    public Post(String text, String email, LocalDate date) {
+        this.text = text;
         this.email = email;
         this.date = date;
     }
@@ -49,20 +46,12 @@ public class Post {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getText() {
+        return text;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setText(String content) {
+        this.text = content;
     }
 
     public LocalDate getDate() {
@@ -73,13 +62,12 @@ public class Post {
         this.date = date;
     }
 
-
     @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
+                ", text='" + text + '\'' +
+                ", email='" + email + '\'' +
                 ", date=" + date +
                 '}';
     }
