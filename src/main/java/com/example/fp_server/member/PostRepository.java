@@ -13,11 +13,8 @@ import java.util.Optional;
  *  instansieringen av klassen och att den ska användas som en dataåtkomstkomponent.
  */
 @Repository
-public interface MemberRepository extends JpaRepository<Member, Long> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query("SELECT s FROM Member s WHERE s.email = ?1") //write a query and use the following method findMemberByEmail to
-    Optional<Member> findMemberByEmail(String email); //call this query and return an Optional<Member>
-
-    @Query("SELECT password FROM Member s WHERE s.email = ?1")
-    String acceptLogin(String email);
+    @Query("SELECT s FROM Post s WHERE s.email = ?1") //write a query and use the following method findMemberByEmail to
+    Optional<Post> findPostsByAuthor(String email); //call this query and return an Optional<Member>
 }

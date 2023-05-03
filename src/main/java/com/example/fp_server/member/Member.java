@@ -17,26 +17,18 @@ public class Member {
             generator = "member_sequence"
     )
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String email;
-    private LocalDate dob;
-    @Transient
-    private Integer age;
+    private String password;
 
     public Member(){
-
     }
-    public Member(String name, String email, LocalDate dob) {
-        this.name = name;
+    public Member(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.dob = dob;
-    }
-
-    public Member(Long id, String name, String email, LocalDate dob) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
+        this.password = password;
     }
 
     public Long getId() {
@@ -47,12 +39,12 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
     public String getEmail() {
@@ -63,30 +55,38 @@ public class Member {
         this.email = email;
     }
 
-    public LocalDate getDob() {
-        return dob;
+    // public Integer getAge() {
+    //    return Period.between(this.dob, LocalDate.now()).getYears();
+    //}
+
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public Integer getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
+    public String getPassword() {
+        return password;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
+    //public void setAge(Integer age) {
+    //    this.age = age;
+    //}
 
     @Override
     public String toString() {
         return "Member{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", dob=" + dob +
-                ", age=" + age +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

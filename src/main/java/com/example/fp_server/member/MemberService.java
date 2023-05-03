@@ -3,12 +3,7 @@ package com.example.fp_server.member;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,6 +20,11 @@ public class MemberService {
 
     public List<Member> getMembers() {
         return memberRepository.findAll();
+    }
+
+    public boolean getLoginAccept(String email, String password) {
+        String pw = memberRepository.acceptLogin(email);
+        return (password.equals(pw));
     }
 
     public void addNewMember(Member member) {
@@ -50,8 +50,8 @@ public class MemberService {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalStateException(
                 "member with id " + memberId + " does not exist"));
 
-        if (name != null && name.length() > 0 && !Objects.equals(member.getName(), name)) {
-            member.setName(name);
+        if (name != null && name.length() > 0 && !Objects.equals(member.getFirstName(), name)) {
+            member.setFirstName(name);
         }
 
         if (email != null && email.length() > 0 && !Objects.equals(member.getEmail(), email)) {

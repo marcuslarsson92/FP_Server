@@ -26,16 +26,23 @@ public class MemberController {
      * Sends the list of members to the client (webpage)
      * @return
      */
+
     @GetMapping
     public List<Member> getStudents() {
         return memberService.getMembers();
     }
 
+    @GetMapping(path = "/{email}/{password}")
+    public boolean getLoginAccept(@PathVariable("email") String email, @PathVariable("password") String password) {
+        return memberService.getLoginAccept(email, password);
+    }
+
+
     @PostMapping
     public void registerNewMember(@RequestBody Member member) {
         memberService.addNewMember(member);
     }
-    @DeleteMapping(path = "{memberId}")
+    @DeleteMapping(path = "/{memberId}")
     public void deleteMember(@PathVariable("memberId") Long memberId) {
         memberService.deleteMember(memberId);
     }
@@ -46,4 +53,5 @@ public class MemberController {
             @RequestParam(required = false) String email) {
         memberService.updateMember(memberId, name, email);
     }
+
 }
