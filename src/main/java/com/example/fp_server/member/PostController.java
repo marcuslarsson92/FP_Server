@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping(path = "api/v1/post")
 public class PostController {
@@ -18,6 +20,7 @@ public class PostController {
 
     @PostMapping(path = "/new")
     public void postNewPost(@RequestBody Post post) {
+        post.setDate(LocalDateTime.now());
         postService.addNewPost(post);
     }
 }

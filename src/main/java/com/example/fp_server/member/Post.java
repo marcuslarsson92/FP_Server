@@ -2,6 +2,7 @@ package com.example.fp_server.member;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -19,15 +20,16 @@ public class Post {
     private Long id;
     private String text;
     private String email;
-    private LocalDate date;
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime date;
 
     public Post() {
     }
 
-    public Post(String text, String email, LocalDate date) {
+    public Post(String text, String email) {
         this.text = text;
         this.email = email;
-        this.date = date;
+        this.date = LocalDateTime.now();
     }
 
     public String getEmail() {
@@ -54,11 +56,11 @@ public class Post {
         this.text = content;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
