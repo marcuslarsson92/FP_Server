@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class Loginrequest {
     private String email;
     private String password;
-
+    private Member member;
     public String getEmail() {
         return email;
     }
@@ -20,6 +20,14 @@ public class Loginrequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Member getMember(){
+        return member;
+    }
+
+    public void setMember (Member member){
+        this.member = member;
     }
 
     public String encryptPassword() {
