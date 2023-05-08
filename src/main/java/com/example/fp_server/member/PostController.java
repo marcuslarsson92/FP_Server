@@ -1,12 +1,10 @@
 package com.example.fp_server.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/post")
@@ -22,5 +20,15 @@ public class PostController {
     public void postNewPost(@RequestBody Post post) {
         post.setDate(LocalDateTime.now());
         postService.addNewPost(post);
+    }
+
+    @GetMapping(path = "/{email}")
+    public List<Post> getPostsByEmail(@PathVariable("email") String email) {
+        return postService.getPostsByEmail(email);
+    }
+
+    @GetMapping
+    public List<Post> getAllPosts() {
+        return postService.getAllPosts();
     }
 }

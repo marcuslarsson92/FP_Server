@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -15,6 +16,6 @@ import java.util.Optional;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query("SELECT s FROM Post s WHERE s.email = ?1") //write a query and use the following method findMemberByEmail to
-    Optional<Post> findPostsByAuthor(String email); //call this query and return an Optional<Member>
+    @Query("SELECT s FROM Post s WHERE s.email = ?1")
+    List<Post> getPostsByEmail(String email);
 }

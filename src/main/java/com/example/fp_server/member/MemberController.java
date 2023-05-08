@@ -46,7 +46,7 @@ public class MemberController {
     public void deleteMember(@PathVariable("memberId") Long memberId) {
         memberService.deleteMember(memberId);
     }
-    @PutMapping(path = "{memberId}")
+    @PutMapping(path = "/{memberId}")
     public void updateMember(
             @PathVariable("memberId") Long memberId,
             @RequestParam(required = false) String name,
