@@ -20,4 +20,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     @Query("SELECT password FROM Member s WHERE s.email = ?1")
     String acceptLogin(String email);
+
 }

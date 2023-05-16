@@ -27,6 +27,10 @@ public class MemberService {
         return (password.equals(pw));
     }
 
+    public Optional<Member> getLoginMember(String email) {
+        return memberRepository.findMemberByEmail(email);
+    }
+
     public void addNewMember(Member member) {
         Optional<Member> memberOptional = memberRepository.findMemberByEmail(member.getEmail());
 
