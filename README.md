@@ -1,3 +1,5 @@
 # FP_Server
 
-Första Maven projektet. Hade en innan som hette FP_Backend men mycket strul så började om på ny kula så välkomna till FinansPortalens FP_Server :).
+https://github.com/marcuslarsson92/FP_Server.git
+
+Välkomna till FinansPortalens FP_Server som är vår backendserver. Vi använder oss av spring boot. 
