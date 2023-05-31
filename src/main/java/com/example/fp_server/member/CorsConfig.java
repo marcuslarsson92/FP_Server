@@ -21,6 +21,7 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/api/v1/**")
                 .allowedOrigins("http://127.0.0.1:5500/") // Lägg till din webbsida här
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .exposedHeaders("Access-Control-Allow-Origin");
     }
 }
