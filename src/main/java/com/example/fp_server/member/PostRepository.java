@@ -16,7 +16,7 @@ import java.util.Optional;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query("SELECT s FROM Post s WHERE s.email = ?1")
+    @Query("SELECT s FROM Post s WHERE s.email = ?1 order by id desc")
     List<Post> getPostsByEmail(String email);
 
     @Query("SELECT s FROM Post s order by id DESC")
