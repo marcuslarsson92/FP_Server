@@ -18,4 +18,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query("SELECT s FROM Post s WHERE s.email = ?1")
     List<Post> getPostsByEmail(String email);
+
+    @Query("SELECT s FROM Post order by id DESC")
+    List<Post> getAllPosts();
 }
