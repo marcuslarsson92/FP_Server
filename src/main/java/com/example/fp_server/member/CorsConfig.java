@@ -6,12 +6,11 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 
 /**
- * Denna classen förhindrar webbläsaren att blockera XMLHttpRequest-förfrågan
- * på grund av "CORS"-policy. CORS (Cross-Origin Resource Sharing) är en
- * säkerhetsfunktion som används av webbläsare för att förhindra webbsidor
- * från att göra obehöriga förfrågningar till andra webbplatser.
- * Denna classen gör det möjligt för Spring Boot-applikation
- * att tillåta CORS-requests webbsidan.
+ * This class prevents the browser from blocking an XMLHttpRequest
+ * request due to the "CORS" policy. CORS (Cross-Origin Resource Sharing)
+ * is a security feature used by browsers to prevent web pages from making
+ * unauthorized requests to other websites.
+ * @author marcus
  */
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {

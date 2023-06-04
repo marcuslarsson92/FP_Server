@@ -7,10 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * Annoteringen @Repository kan tillämpas på en klass som tillhandahåller dataåtkomst
- *  via en databas, en fil eller en annan extern datalagringsteknik. Genom att märka
- *  en klass med @Repository, berättar du för Spring Framework att den ska hantera
- *  instansieringen av klassen och att den ska användas som en dataåtkomstkomponent.
+ * The annotation @Repository can be applied to a class that provides
+ * data access through a database, a file, or another external data storage
+ * technology. By marking a class with @Repository, you inform the Spring Framework
+ * to handle the instantiation of the class and to use it as a data access component.
+ *
+ * @author Marcus Larsson
  */
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {

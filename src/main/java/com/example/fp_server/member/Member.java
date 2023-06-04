@@ -3,6 +3,10 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * A class that mirrors the database table Member
+ * @author Marcus Larsson
+ */
 @Entity
 @Table
 public class Member {
@@ -24,6 +28,14 @@ public class Member {
 
     public Member(){
     }
+
+    /**
+     * Instantiates a new Member.
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @param email     the email
+     * @param password  the password
+     */
     public Member(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,46 +43,93 @@ public class Member {
         this.password = password;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Gets first name.
+     *
+     * @return the first name
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Sets first name.
+     *
+     * @param name the name
+     */
     public void setFirstName(String name) {
         this.firstName = name;
     }
 
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Sets email.
+     *
+     * @param email the email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    // public Integer getAge() {
-    //    return Period.between(this.dob, LocalDate.now()).getYears();
-    //}
 
+    /**
+     * Gets last name.
+     *
+     * @return the last name
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Sets last name.
+     *
+     * @param lastName the last name
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * Gets password.
+     *
+     * @return the password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Sets password.
+     *
+     * @param password the password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
