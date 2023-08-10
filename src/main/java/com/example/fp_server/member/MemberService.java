@@ -45,14 +45,18 @@ public class MemberService {
         memberRepository.deleteById(memberId);
     }
 
+    /**
+     * Update member.
+     *
+     * @param email    the email
+     */
     @Transactional
-    public void updateMember(Long memberId, String name, String email) {
+    public void updateEmail(String email, String newEmail) {
+        memberRepository.updateEmail(email, newEmail);
+
+        /*
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalStateException(
                 "member with id " + memberId + " does not exist"));
-
-        if (name != null && name.length() > 0 && !Objects.equals(member.getFirstName(), name)) {
-            member.setFirstName(name);
-        }
 
         if (email != null && email.length() > 0 && !Objects.equals(member.getEmail(), email)) {
             Optional<Member> memberOptional = memberRepository.findMemberByEmail(email);
@@ -62,5 +66,10 @@ public class MemberService {
             member.setEmail(email);
 
         }
+          if (name != null && name.length() > 0 && !Objects.equals(member.getFirstName(), name)) {
+            member.setFirstName(name);
+        }
+
+         */
     }
 }

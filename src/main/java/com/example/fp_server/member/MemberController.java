@@ -46,12 +46,18 @@ public class MemberController {
     public void deleteMember(@PathVariable("memberId") Long memberId) {
         memberService.deleteMember(memberId);
     }
-    @PutMapping(path = "/{memberId}")
-    public void updateMember(
-            @PathVariable("memberId") Long memberId,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email) {
-        memberService.updateMember(memberId, name, email);
+
+    /**
+     * Update member.
+     * @param email    the current email
+     * @param newEmail the new email
+     */
+    @PutMapping(path = "/email}")
+    public void updateEmail(
+            @PathVariable("email") String email,
+            @RequestParam(required = false) String newEmail) {
+            memberService.updateEmail(email, newEmail);
+
     }
 
 }
