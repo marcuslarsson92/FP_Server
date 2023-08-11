@@ -36,13 +36,8 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    public void deleteMember(Long memberId) {
-        boolean exist = memberRepository.existsById(memberId);
-
-        if (!exist) {
-            throw new IllegalStateException("Member with id " + memberId + " does not exist");
-        }
-        memberRepository.deleteById(memberId);
+    public void deleteMember(String email) {
+        memberRepository.deleteMember(email);
     }
 
     /**

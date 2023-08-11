@@ -43,9 +43,13 @@ public class MemberController {
     public void registerNewMember(@RequestBody Member member) {
         memberService.addNewMember(member);
     }
-    @DeleteMapping(path = "/{memberId}")
-    public void deleteMember(@PathVariable("memberId") Long memberId) {
-        memberService.deleteMember(memberId);
+    @DeleteMapping(path = "/delete/{email}")
+    public ResponseEntity<String> deleteMember(@PathVariable("email") String email) {
+        if (email != null) {
+            memberService.deleteMember(email);
+            return ResponseEntity.ok("Member deleted successfully");
+        }
+        return ResponseEntity.badRequest().body("Invalid email.");
     }
 
     /**
