@@ -67,4 +67,19 @@ public class MemberController {
 
     }
 
+    @PutMapping(path = "/updatepw")
+    public ResponseEntity<String> updatePassword(@RequestBody Member member) {
+
+        String email = member.getEmail();
+        String newPassword = member.getPassword();
+
+        if (email != null && newPassword != null) {
+            memberService.updatePassword(email, newPassword);
+            return ResponseEntity.ok("Password updated successfully");
+        }
+        return ResponseEntity.badRequest().body("Invalid information in JSON object.");
+
+    }
+
+
 }

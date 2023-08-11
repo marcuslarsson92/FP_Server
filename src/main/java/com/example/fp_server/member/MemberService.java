@@ -53,6 +53,7 @@ public class MemberService {
     @Transactional
     public void updateEmail(String email, String newEmail) {
         memberRepository.updateEmail(email, newEmail);
+    }
 
         /*
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalStateException(
@@ -71,5 +72,9 @@ public class MemberService {
         }
 
          */
+
+    @Transactional
+    public void updatePassword(String email, String newPassword) {
+        memberRepository.updatePassword(email, newPassword);
     }
 }
