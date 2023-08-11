@@ -1,6 +1,7 @@
 package com.example.fp_server.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,14 +50,20 @@ public class MemberController {
 
     /**
      * Update member.
-     * @param email    the current email
-     * @param newEmail the new email
+     * @param email    the current email.
+     * @param member the object which we extract the new email from.
      */
-    @PutMapping(path = "/email}")
-    public void updateEmail(
-            @PathVariable("email") String email,
-            @RequestParam(required = false) String newEmail) {
+    @PutMapping(path = "/{email}")
+    public ResponseEntity<String> updateEmail(@PathVariable("email") String email,
+            @RequestBody Member member) {
+
+        String newEmail = member.getEmail();
+
+        if (newEmail != null) {
             memberService.updateEmail(email, newEmail);
+            return ResponseEntity.ok("Email updated successfully");
+        }
+        return ResponseEntity.badRequest().body("No new email provided in the JSON object.");
 
     }
 
