@@ -1,6 +1,7 @@
 package com.example.fp_server.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -73,30 +74,47 @@ public class MemberController {
     public void registerNewMember(@RequestBody Member member) {
         memberService.addNewMember(member);
     }
-
-    /**
-     * Delete member.
-     *
-     * @param memberId the member id
-     */
-    @DeleteMapping(path = "/{memberId}")
-    public void deleteMember(@PathVariable("memberId") Long memberId) {
-        memberService.deleteMember(memberId);
+    @DeleteMapping(path = "/delete/{email}")
+    public ResponseEntity<String> deleteMember(@PathVariable("email") String email) {
+        if (email != null) {
+            memberService.deleteMember(email);
+            return ResponseEntity.ok("Member deleted successfully");
+        }
+        return ResponseEntity.badRequest().body("Invalid email.");
     }
 
     /**
      * Update member.
-     *
-     * @param memberId the member id
-     * @param name     the name
-     * @param email    the email
+     * @param email    the current email.
+     * @param member the object which we extract the new email from.
      */
-    @PutMapping(path = "/{memberId}")
-    public void updateMember(
-            @PathVariable("memberId") Long memberId,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email) {
-            memberService.updateMember(memberId, name, email);
+    @PutMapping(path = "/{email}")
+    public ResponseEntity<String> updateEmail(@PathVariable("email") String email,
+            @RequestBody Member member) {
+
+        String newEmail = member.getEmail();
+
+        if (newEmail != null) {
+            memberService.updateEmail(email, newEmail);
+            return ResponseEntity.ok("Email updated successfully");
+        }
+        return ResponseEntity.badRequest().body("No new email provided in the JSON object.");
+
     }
+
+    @PutMapping(path = "/updatepw")
+    public ResponseEntity<String> updatePassword(@RequestBody Member member) {
+
+        String email = member.getEmail();
+        String newPassword = member.getPassword();
+
+        if (email != null && newPassword != null) {
+            memberService.updatePassword(email, newPassword);
+            return ResponseEntity.ok("Password updated successfully");
+        }
+        return ResponseEntity.badRequest().body("Invalid information in JSON object.");
+
+    }
+
 
 }
