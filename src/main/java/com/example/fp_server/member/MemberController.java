@@ -33,8 +33,7 @@ public class MemberController {
 
     /**
      * Sends the list of members to the client (webpage)
-     *
-     * @return members
+     * @return
      */
     @GetMapping
     public List<Member> getMembers() {
@@ -74,6 +73,7 @@ public class MemberController {
     public void registerNewMember(@RequestBody Member member) {
         memberService.addNewMember(member);
     }
+
     @DeleteMapping(path = "/delete/{email}")
     public ResponseEntity<String> deleteMember(@PathVariable("email") String email) {
         if (email != null) {
