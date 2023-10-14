@@ -2,10 +2,11 @@ package com.example.fp_server.member;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -64,14 +65,24 @@ public class MemberService {
      * Add new member.
      *
      * @param member the member
+     * @return
      */
-    public void addNewMember(Member member) {
+    public String addNewMember(Member member) {
+        //try {
         Optional<Member> memberOptional = memberRepository.findMemberByEmail(member.getEmail());
 
         if (memberOptional.isPresent()) {
-            throw new IllegalStateException("email taken");
+            //throw new IllegalStateException("email taken");
+            System.out.println("email taken!!!!!!!!!!!!!!!!");
+            //return new ResponseEntity<>("email taken", HttpStatus.BAD_REQUEST);
+            return "email taken";
         }
         memberRepository.save(member);
+        System.out.println("Member added!!!!!!!!!!!!!!!!");
+        return "Member added";
+        /*} catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }*/
     }
 
     public void deleteMember(String email) {

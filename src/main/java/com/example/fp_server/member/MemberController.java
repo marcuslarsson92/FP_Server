@@ -1,6 +1,7 @@
 package com.example.fp_server.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -69,9 +70,15 @@ public class MemberController {
      *
      * @param member the member
      */
+    @CrossOrigin(origins = "http://127.0.0.1:5500/")
     @PostMapping
-    public void registerNewMember(@RequestBody Member member) {
-        memberService.addNewMember(member);
+    public ResponseEntity<String> registerNewMember(@RequestBody Member member) {
+        String output = memberService.addNewMember(member);
+        if (output == "email taken") {
+            return new ResponseEntity<>("email taken",HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>("Member added", HttpStatus.OK);
+        }
     }
 
     @DeleteMapping(path = "/delete/{email}")
